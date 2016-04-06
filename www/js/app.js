@@ -162,6 +162,9 @@ console.log("bloody hard");
 .controller('SettingCtrl',function($scope){
 })
 
+.controller('creditCtrl',function($scope){
+})
+
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -185,6 +188,11 @@ console.log("bloody hard");
       url: '/settings',
       templateUrl: 'templates/settings.html',
       controller: 'SettingCtrl'
+    })
+  .state('credit', {
+      url: '/credit',
+      templateUrl: 'templates/credit.html',
+      controller: 'creditCtrl'
     });
   $urlRouterProvider.otherwise('/home');
     
