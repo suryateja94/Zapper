@@ -35,7 +35,7 @@ console.log("bloody hard");
 
 .controller('SmsCtrl',function($scope,$ionicPopup,$cordovaSms){
     $scope.sms = {
-    number: '9494988000',
+    number: '9154012493',
     message: 'This is some dummy text'
   };
  
@@ -55,7 +55,7 @@ console.log("bloody hard");
       $scope.msg = command;
       console.log($scope.msg);
       $cordovaSms
-        .send('9494988000', $scope.msg , options)
+        .send('9154012493', $scope.msg , options)
         .then(function() {
          console.log('Success');
           // Success! SMS was sent
@@ -69,24 +69,17 @@ console.log("bloody hard");
 })
 
 .controller('PopupCtrl',function($scope, $ionicPopup, $ionicLoading) {
-
-    $scope.appliance = {
-        value0: false,
-        value1: false,
-        value2: false,
-        value3: false,
-        value4: false
-    };
     
     $scope.btStatus = 0;
     
-    $scope.showAlert = function() {
+    $scope.showAlert = function(msgd) {
     var alertPopup = $ionicPopup.alert({
      title: 'Alert for Blutooth!',
-     template: 'OK ani ardham'
+     template: msgd
    });
     alertPopup.then(function(res) {
      console.log('Thank you for not eating my delicious ice cream cone');
+       
    });
  };
         
@@ -98,18 +91,18 @@ console.log("bloody hard");
     });
     };
     
+     $scope.appliance = {value0: false};
+     $scope.btStatus = 1;
      $scope.toggleChange = function(){
          
          //if($scope.blue===0){
          //$scope.showConfirm();
             // $scope.showList();
          //}
-         
+        
          if(String(arguments[0])==="0"){
             $scope.btStatus = 1;
-             
              if($scope.appliance.value0){
-                 
              $scope.showConfirm();
              }
              else{
@@ -119,60 +112,48 @@ console.log("bloody hard");
              }
              
          }
-         else if(String(arguments[0])==="1" && $scope.btStatus===1){
-             if($scope.appliance.value1)
-                bluetoothSerial.write('2');
-             else
-                 bluetoothSerial.write('1');
-         console.log("Shit works"+ $scope.appliance.value1);
-         }
-         else if(String(arguments[0])==="2" && $scope.btStatus===1){
-            if($scope.appliance.value2)
-                bluetoothSerial.write('4');
-             else
-                 bluetoothSerial.write('3');
-             console.log("Shit works"+ $scope.appliance.value2);
-         }
-         else if(String(arguments[0])==="3"  && $scope.btStatus===1){
-             if($scope.appliance.value3)
-                bluetoothSerial.write('6');
-             else
-                 bluetoothSerial.write('5');
-         console.log("Shit works"+ $scope.appliance.value3);
-         } 
-         else if(String(arguments[0])==="4" && $scope.btStatus===1){
-             if($scope.appliance.value2)
-                bluetoothSerial.write('8');
-             else
-                 bluetoothSerial.write('7');
-         console.log("Shit works"+ $scope.appliance.value4 );
-         }
-         
+ 
          
      };
     
+    $scope.sendCommand = function(cmd){
+    
+     bluetoothSerial.write(cmd);
+    
+    };
+    
    
  $scope.showConfirm = function() {
-     $scope.showList();
+     
    var confirmPopup = $ionicPopup.confirm({
      title: 'Bluetooth',
      template: 'Connect to prototype?'
    });
 
    confirmPopup.then(function(res) {
-       
+       $scope.showList();
      if(res){    
      bluetoothSerial.enable(
         function() {
            bluetoothSerial.connectInsecure('30:14:10:15:14:28',
                                            function(){document.getElementById('v').style.display = "block"; $ionicLoading.hide();},
-                                           function(){});
+                                           function(){$ionicLoading.hide();document.getElementById("cha").checked = false; $scope.btStatus = 0;$scope.showAlert('Prototype out of range!');});
             
         },
         function() {
             console.log("The user did *not* enable Bluetooth");
+            document.getElementById("cha").checked = false;
+             $scope.btStatus = 0;
+            $ionicLoading.hide();
+            $scope.showAlert('Bluetooth not enabled!');
+            
         }
     ); 
+     }else{
+         document.getElementById("cha").checked = false;
+          $scope.btStatus = 0;
+         $ionicLoading.hide();
+         console.log("The user did *not* enable Bluetooth");
      }
    });
  };
