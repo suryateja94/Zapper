@@ -1,0 +1,64 @@
+/* Empty. Add your own CSS if you like */
+.imagew{
+	background-color: whitesmoke;
+	/*background-repeat: no-repeat;
+    /*background-size: contain;width: 80%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    
+    background-position: center;*/
+    margin-top: 2em;
+    
+}
+.hold{
+margin-top: 8em;
+}
+.holdf{
+margin-top: 2em;
+}
+
+.bluet{
+border-radius: 50%;
+width: 70%;
+height:inherit;
+padding-top: 50%;
+background-image: url("../img/b.jpg");
+     background-position: center;
+     background-size: contain;
+    background-repeat: no-repeat;
+}
+.smst{
+    border-radius: 50%;
+width: 70%;
+height:inherit;
+padding-top: 50%;
+background-image: url("../img/bmsg.png");
+     background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.credit{
+    border-radius: 50%;
+width: 70%;
+height:inherit;
+padding-top: 50%;
+background-image: url("../img/cre.png");
+     background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
+.settings{
+    border-radius: 50%;
+width: 70%;
+height:inherit;
+padding-top: 50%;
+background-image: url("../img/settings.png");
+     background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.option{
+display: none;
+}

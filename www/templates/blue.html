@@ -1,0 +1,73 @@
+
+<ion-view title="Appliances" class ="imagew">
+  <ion-content>
+      
+      
+      <div class="card">
+          <div class="item item-divider">
+   Prototype Conenction
+  </div>
+  <div class="item item-text-wrap">
+    <ul class="list">
+      <li class="item item-toggle">
+       Status
+       <label class="toggle toggle-balanced">
+         <input type="checkbox" ng-model="appliance.value0" ng-change="toggleChange(0)">
+         <div class="track">
+           <div class="handle"></div>
+         </div>
+       </label>
+      </li>
+      
+      
+    </ul>
+          </div></div>
+
+      <div class="option" id="v">
+      <div class="card">
+          <div class="item item-divider">
+   Bluetooth controlled devices:
+  </div>
+  <div class="item item-text-wrap">
+    <ul class="list">
+      <li class="item item-toggle">
+       Light
+       <label class="toggle toggle-balanced">
+         <input type="checkbox" ng-model="appliance.value1" ng-change="toggleChange(1)">
+         <div class="track">
+           <div class="handle"></div>
+         </div>
+       </label>
+      </li>
+      <li class="item item-toggle">
+       Fan
+       <label class="toggle toggle-balanced">
+         <input type="checkbox" ng-model="appliance.value2" ng-change="toggleChange(2)">
+         <div class="track">
+           <div class="handle"></div>
+         </div>
+       </label>
+      </li>
+      <li class="item item-toggle">
+       Tube
+       <label class="toggle toggle-balanced">
+         <input type="checkbox" ng-model="appliance.value3" ng-change="toggleChange(3)">
+         <div class="track">
+           <div class="handle"></div>
+         </div>
+       </label>
+      </li>
+      <li class="item item-toggle">
+       Plug
+       <label class="toggle toggle-balanced">
+         <input type="checkbox" ng-model="appliance.value4" ng-change="toggleChange(4)">
+         <div class="track">
+           <div class="handle"></div>
+         </div>
+       </label>
+      </li>
+    </ul>
+          </div></div></div>
+      
+  </ion-content>
+</ion-view>
