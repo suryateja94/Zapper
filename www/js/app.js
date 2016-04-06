@@ -51,8 +51,9 @@ console.log("bloody hard");
     };
       $scope.msg = "";
  
-    $scope.sendSMS = function() {
- 
+    $scope.sendSMS = function(command) {
+      $scope.msg = command;
+      console.log($scope.msg);
       $cordovaSms
         .send('9494988000', $scope.msg , options)
         .then(function() {
@@ -63,6 +64,7 @@ console.log("bloody hard");
           // An error occurred
         });
     }
+
   });
 })
 
