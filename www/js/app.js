@@ -38,6 +38,19 @@ console.log("bloody hard");
     number: '9154012493',
     message: 'This is some dummy text'
   };
+    
+    
+    $scope.showAlert = function(cmv) {
+       var alertPopup = $ionicPopup.alert({
+         title: 'Message Status!',
+         template: cmv
+       });
+
+       alertPopup.then(function(res) {
+         console.log('Thank you for not eating my delicious ice cream cone');
+       });
+     };
+    
  
   document.addEventListener("deviceready", function() {
  
@@ -57,9 +70,11 @@ console.log("bloody hard");
       $cordovaSms
         .send('9154012493', $scope.msg , options)
         .then(function() {
+          $scope.showAlert("Command Delivered!")
          console.log('Success');
           // Success! SMS was sent
         }, function(error) {
+          $scope.showAlert("Command Failed");
           console.log('Error');
           // An error occurred
         });
