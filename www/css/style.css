@@ -11,6 +11,10 @@
     margin-top: 2em;
     
 }
+.ani{
+content: url("../img/anirudh12.jpg");
+}
+
 .hold{
 margin-top: 8em;
 }
@@ -18,47 +22,10 @@ margin-top: 8em;
 margin-top: 2em;
 }
 
-.bluet{
-border-radius: 50%;
-width: 70%;
-height:inherit;
-padding-top: 50%;
-background-image: url("../img/b.jpg");
-     background-position: center;
-     background-size: contain;
-    background-repeat: no-repeat;
+.men1{
+content: url("../img/surya.jpg");
 }
-.smst{
-    border-radius: 50%;
-width: 70%;
-height:inherit;
-padding-top: 50%;
-background-image: url("../img/bmsg.png");
-     background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-.credit{
-    border-radius: 50%;
-width: 70%;
-height:inherit;
-padding-top: 50%;
-background-image: url("../img/cre.png");
-     background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
 
-}
-.settings{
-    border-radius: 50%;
-width: 70%;
-height:inherit;
-padding-top: 50%;
-background-image: url("../img/settings.png");
-     background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
 .option{
 display: none;
 }

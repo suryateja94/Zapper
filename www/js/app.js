@@ -35,7 +35,7 @@ console.log("bloody hard");
 
 .controller('SmsCtrl',function($scope,$ionicPopup,$cordovaSms){
     $scope.sms = {
-    number: '9154012493',
+    number: '8466974974',
     message: 'This is some dummy text'
   };
     
@@ -62,22 +62,47 @@ console.log("bloody hard");
           //intent: 'INTENT' // send SMS inside a default SMS app
       }
     };
+      $scope.sta = 0;
+      
+      $scope.showConfirm = function() {
+       var confirmPopup = $ionicPopup.confirm({
+         title: 'Send SMS',
+         template: 'SMS cost based on carrier charges, send anyway?'
+       });
+
+       confirmPopup.then(function(res) {
+         if(res) {
+            $scope.sta = 1;
+           console.log('You are sure');
+         } else {
+             $scope.sta = 0;
+           console.log('You are not sure');
+         }
+       });
+     };
+      
+      
       $scope.msg = "";
  
-    $scope.sendSMS = function(command) {
+      
+      
+    $scope.sendSMS = function(command) {   
+        $scope.showConfirm();
+        if($scope.sta){
       $scope.msg = command;
       console.log($scope.msg);
       $cordovaSms
-        .send('9154012493', $scope.msg , options)
+        .send('8466974974', $scope.msg , options)
         .then(function() {
-          $scope.showAlert("Command Delivered!")
+          //$scope.showAlert("Command Delivered!")
          console.log('Success');
           // Success! SMS was sent
         }, function(error) {
           $scope.showAlert("Command Failed");
           console.log('Error');
           // An error occurred
-        });
+        });  
+        }
     }
 
   });
@@ -102,7 +127,11 @@ console.log("bloody hard");
         
     $scope.showList= function(){
         $ionicLoading.show({
-      template: '<p>Connecting...</p><ion-spinner></ion-spinner>'
+      template: '<p>Connecting...<ion-spinner icon="android"></ion-spinner></p>',
+            animation: 'fade-in',
+    showBackdrop: true,
+    maxWidth: 200,
+    showDelay: 0
     });
     };
     
@@ -131,10 +160,14 @@ console.log("bloody hard");
          
      };
     
-    $scope.sendCommand = function(cmd){
+    $scope.sendCommand = function(rtg){
     
-     bluetoothSerial.write(cmd);
-    
+     bluetoothSerial.write(""+rtg, function () {
+     //$scope.showAlert(rtg);
+     }, function(){
+     $scope.showAlert("Failed");
+     });
+     
     };
     
    
@@ -146,18 +179,20 @@ console.log("bloody hard");
    });
 
    confirmPopup.then(function(res) {
+        bluetoothSerial.disconnect();
        $scope.showList();
      if(res){    
      bluetoothSerial.enable(
         function() {
            bluetoothSerial.connectInsecure('30:14:10:15:14:28',
                                            function(){document.getElementById('v').style.display = "block"; $ionicLoading.hide();},
-                                           function(){$ionicLoading.hide();document.getElementById("cha").checked = false; $scope.btStatus = 0;$scope.showAlert('Prototype out of range!');});
+                                           function(){$ionicLoading.hide();document.getElementById("cha").checked = false; $scope.appliance.value0 =false;$scope.showAlert('Prototype out of range!');});
             
         },
         function() {
             console.log("The user did *not* enable Bluetooth");
             document.getElementById("cha").checked = false;
+            $scope.appliance.value0 = false;
              $scope.btStatus = 0;
             $ionicLoading.hide();
             $scope.showAlert('Bluetooth not enabled!');
@@ -166,6 +201,7 @@ console.log("bloody hard");
     ); 
      }else{
          document.getElementById("cha").checked = false;
+         $scope.appliance.value0 = false;
           $scope.btStatus = 0;
          $ionicLoading.hide();
          console.log("The user did *not* enable Bluetooth");

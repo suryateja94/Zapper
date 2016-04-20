@@ -5,7 +5,7 @@
     Demo and documentaion on: ignitersworld.com/lab/patternLock.html
 */
 
-.patt-holder{background:#FFFFFF;  -ms-touch-action: none; margin-left: 35em;}
+.patt-holder{background:#FFFFFF;}
 .patt-wrap{position:relative; cursor:pointer;}
 .patt-wrap ul, .patt-wrap li{
     list-style: none;
