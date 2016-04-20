@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 
 angular.module('starter', ['ionic','ngCordova'])
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$ionicPopup) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -24,6 +24,18 @@ angular.module('starter', ['ionic','ngCordova'])
       //if(sms){console.log("Works");}
       
   });
+    $ionicPlatform.registerBackButtonAction(function(event) {
+    if (true) { // your check here
+      $ionicPopup.confirm({
+        title: 'Alert',
+        template: 'Exit Zapper?'
+      }).then(function(res) {
+        if (res) {
+          ionic.Platform.exitApp();
+        }
+      })
+    }
+  }, 100);
 })
 
 .controller('homeCtrl',function($scope){
